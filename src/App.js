@@ -1,23 +1,71 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import YouTube from 'react-youtube'
+import categories from './video-categories'
+import logo from './images/logo.png'
+
+const videoIds = ['tgbNymZ7vqY', 'HEXWRTEbj1I', 'nzQDQcELNuU']
 
 function App() {
+  const [videoControls, setVideoControls] = useState() // mute, unMute, isMuted, getVolume, playVideo, pauseVideo, getDuration, 
+  const [videoId, setVideoId] = useState(videoIds[Math.floor(Math.random() * videoIds.length)])
+  const [isMuted, setIsMuted] = useState(true)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex w-screen">
+      {/* video player */}
+      <div className="relative flex-grow flex-shrink h-screen">
+        {/* mute button container */}
+        <div className="absolute w-full h-48 bg-black">
+          {isMuted && (
+            <button
+              className="bg-white rounded-md w-48 h-12 m-5 flex items-center justify-evenly font-bold"
+              onClick={() => videoControls.unMute() && setIsMuted(false)}
+            >
+              <svg viewBox="0 0 24 24" height="24" width="24"><path d="M3.63 3.63a.996.996 0 000 1.41L7.29 8.7 7 9H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h3l3.29 3.29c.63.63 1.71.18 1.71-.71v-4.17l4.18 4.18c-.49.37-1.02.68-1.6.91-.36.15-.58.53-.58.92 0 .72.73 1.18 1.39.91.8-.33 1.55-.77 2.22-1.31l1.34 1.34a.996.996 0 101.41-1.41L5.05 3.63c-.39-.39-1.02-.39-1.42 0zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-3.83-2.4-7.11-5.78-8.4-.59-.23-1.22.23-1.22.86v.19c0 .38.25.71.61.85C17.18 6.54 19 9.06 19 12zm-8.71-6.29l-.17.17L12 7.76V6.41c0-.89-1.08-1.33-1.71-.7zM16.5 12A4.5 4.5 0 0014 7.97v1.79l2.48 2.48c.01-.08.02-.16.02-.24z"></path></svg>
+              Click to unmute
+            </button>
+          )}
+        </div>
+        <YouTube
+          containerClassName="w-full h-full"
+          className="w-full h-full"
+          videoId={videoId}
+          opts={{ playerVars: { autoplay: 1, mute: 1, controls: 0 } }}
+          onReady={(e) => setVideoControls(e.target)}
+          onEnd={() => setVideoId(videoIds[Math.floor(Math.random() * videoIds.length)])}
+        />
+        {/* player controls */}
+        <div className="absolute bottom-0 w-full h-48 bg-black">
+        </div>
+      </div>
+      {/* buttons panel */}
+      <div className="w-480 h-screen flex-shrink-0 bg-gray-800 overflow-auto">
+        {/* logo and future login controls */}
+        <div className="flex items-center">
+          <img className="w-16 h-16 m-2" src={logo} alt="logo" />
+        </div>
+        {/* buttons */}
+        <div className="grid grid-cols-3">
+          {categories.map(({ title, background, icon }, index) => {
+            const isWideButton = (index - 3) % 7 === 0
+            // const iconSrc = icon ? require(`./images/${icon}`) : {}
+            // icon && console.log(iconSrc)
+            return (
+              <button
+                key={index}
+                className={`rounded-lg m-2 t-center h-44 ${isWideButton ? 'col-span-3' : ''}`}
+                style={{ background }}
+              >
+                {/* {icon && <img className="w-12 h-12" src={icon} alt="" />} */}
+                <p className={`text-white font-bold ${isWideButton ? 'text-xl' : 'w-9/12 m-auto'}`}>{title}</p>
+              </button>
+            )
+          })}
+        </div>
+        <div className="text-white m-2">
+          Icons made by <a href="https://www.flaticon.com/free-icon/history_2234770?related_item_id=2234770&term=history" title="monkik">monkik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        </div>
+      </div>
     </div>
   );
 }
