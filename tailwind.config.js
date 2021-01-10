@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       colors: {
         'gray-1000': 'rgba(34, 34, 34, 0.9)',
+        'submenu-gray': 'rgb(64, 64, 64)',
         'progress-bar-gray': '#404040',
         'near-black': '#202020'
       },

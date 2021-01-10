@@ -15,6 +15,7 @@ function App() {
   const [isMuted, setIsMuted] = useState(true)
   const [isPlaying, setIsPlaying] = useState(true)
   const [videoProgress, setVideoProgress] = useState(0)
+  const [sidePannelShowing, setSidePannelShowing] = useState(true)
 
   useEffect(() => {
     const intervalId = setInterval(() => videoControls && setVideoProgress(videoControls.playerInfo.currentTime / videoControls.getDuration() * 100), 50)
@@ -33,10 +34,13 @@ function App() {
   const nextVideo = () => setVideoIndex((videoIndex + 1) % channels[activeCategoryIndex].videoIds.length)
   const prevVideo = () => setVideoIndex(videoIndex === 0 ? channels[activeCategoryIndex].videoIds.length : videoIndex - 1)
 
+  const remainingSeconds = videoControls ? Math.floor(videoControls.getDuration() - videoControls.playerInfo.currentTime) : 0
+  const remainingMinutes = Math.floor(remainingSeconds / 60)
+
   return (
     <div className='flex w-screen'>
       {/* video player */}
-      <div className='relative flex-grow flex-shrink h-screen'>
+      <div id='video-player' className='relative flex-grow flex-shrink h-screen'>
         {/* mute button container */}
         <div className='absolute w-full h-28 bg-black'>
           {videoControls && isMuted && (
@@ -118,13 +122,40 @@ function App() {
                 <div className='absolute h-1 top-0 left-0 bg-white' style={{ width: `${videoProgress}%` }}></div>
                 <span className='absolute h-3 w-3 rounded-lg bg-white -top-1' style={{ left: `calc(${videoProgress}% - 0.375rem)` }}></span>
               </button>
-              {videoControls && <p className=''></p>}
+              <p className='m-4 opacity-70 text-sm'>
+                {remainingMinutes}:{(remainingSeconds - (remainingMinutes * 60)).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}
+              </p>
+              <button className='w-10 h-10 opacity-70 hover:opacity-100 focus:outline-none' onClick={() => setSidePannelShowing(!sidePannelShowing)}>
+                <svg className='fill-current w-7 h-7' viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none" />
+                  {sidePannelShowing
+                    ? <path d="M19 5H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-1 12H6c-.55 0-1-.45-1-1V8c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1z" />
+                    : <path d="M19 5H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-1 2c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1h-3V7h3zm-5 10H6c-.55 0-1-.45-1-1V8c0-.55.45-1 1-1h7v10z" />
+                  }
+                </svg>
+              </button>
+              <button
+                className='w-10 h-10 opacity-70 hover:opacity-100 focus:outline-none'
+                onClick={() => document.fullscreenElement ? document.exitFullscreen() : document.getElementById('video-player').requestFullscreen()}
+              >
+                <svg className='fill-current w-7 h-7' viewBox="0 0 24 24">
+                  {document.fullscreenElement
+                    ? <><path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 16h2v2c0 .55.45 1 1 1s1-.45 1-1v-3c0-.55-.45-1-1-1H6c-.55 0-1 .45-1 1s.45 1 1 1zm2-8H6c-.55 0-1 .45-1 1s.45 1 1 1h3c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1s-1 .45-1 1v2zm7 11c.55 0 1-.45 1-1v-2h2c.55 0 1-.45 1-1s-.45-1-1-1h-3c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1zm1-11V6c0-.55-.45-1-1-1s-1 .45-1 1v3c0 .55.45 1 1 1h3c.55 0 1-.45 1-1s-.45-1-1-1h-2z" /></>
+                    : <><path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 14c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3c.55 0 1-.45 1-1s-.45-1-1-1H7v-2c0-.55-.45-1-1-1zm0-4c.55 0 1-.45 1-1V7h2c.55 0 1-.45 1-1s-.45-1-1-1H6c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1zm11 7h-2c-.55 0-1 .45-1 1s.45 1 1 1h3c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1s-1 .45-1 1v2zM14 6c0 .55.45 1 1 1h2v2c0 .55.45 1 1 1s1-.45 1-1V6c0-.55-.45-1-1-1h-3c-.55 0-1 .45-1 1z" /></>
+                  }
+                </svg>
+              </button>
+              <button className='w-10 h-10 opacity-70 hover:opacity-100 focus:outline-none' onClick={() => { }}>
+                <svg className='fill-current w-7 h-7' viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none" /><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" /></svg>
+                {/* <div className='relative bg-submenu-gray w-32 -top-20'>
+                  <a href='#'>Watch on YouTube</a>
+                </div> */}
+              </button>
             </div>
           </div>}
         </div>
       </div>
       {/* side panel */}
-      <div className='w-480 h-screen flex-shrink-0 bg-near-black overflow-auto'>
+      {sidePannelShowing && <div className='w-480 h-screen flex-shrink-0 bg-near-black overflow-auto'>
         {/* logo and future login controls */}
         <div className='flex items-center'>
           <img className='w-16 h-16 m-2' src={logo} alt='logo' />
@@ -164,7 +195,7 @@ function App() {
         <div className='text-white text-center opacity-70 m-5'>
           Icons made by <a href='https://www.flaticon.com/free-icon/history_2234770?related_item_id=2234770&term=history' title='monkik'>monkik</a> from <a href='https://www.flaticon.com/' title='Flaticon'>www.flaticon.com</a>
         </div>
-      </div>
+      </div>}
     </div >
   );
 }
