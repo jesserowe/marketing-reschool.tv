@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import YouTube from 'react-youtube'
 import channels from './channels.json'
 import logo from './images/logo.png'
 
 function App() {
+  const progressBar = useRef()
+
   const [videoControls, setVideoControls] = useState() // mute, unMute, isMuted, getVolume, playVideo, pauseVideo, getDuration, 
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
   const [videoIndex, setVideoIndex] = useState(Math.floor(Math.random() * channels[activeCategoryIndex].videoIds.length))
@@ -105,11 +107,16 @@ function App() {
                 </svg>
               </button>
               <button
-                className='flex-grow bg-white relative bg-progress-bar-gray h-1'
-                onClick={(e) => { console.log(videoControls.playerInfo.currentTime) }}
+                ref={progressBar}
+                className='flex-grow bg-white relative bg-progress-bar-gray h-1 focus:outline-none'
+                onClick={(e) => {
+                  // TODO: figure out why the target's bounding rectangle changes each time this is triggered
+                  const { left, width } = progressBar.current.getBoundingClientRect()
+                  videoControls.seekTo((e.clientX - left) / width * videoControls.getDuration())
+                }}
               > {/* progress bar button */}
                 <div className='absolute h-1 top-0 left-0 bg-white' style={{ width: `${videoProgress}%` }}></div>
-                <span className='absolute h-3 w-3 rounded-lg bg-white' style={{ left: `calc(${videoProgress}% - 0.365rem)`, top: '-0.25rem' }}></span>
+                <span className='absolute h-3 w-3 rounded-lg bg-white -top-1' style={{ left: `calc(${videoProgress}% - 0.375rem)` }}></span>
               </button>
               {videoControls && <p className=''></p>}
             </div>
