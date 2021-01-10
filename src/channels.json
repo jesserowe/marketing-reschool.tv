@@ -15,7 +15,7 @@
     {
         "title": "Vintage commercials",
         "description": "Lorem ipsum dolor sit amet",
-        "icon": "history.svg",
+        "icon": "vintage.svg",
         "background": "linear-gradient(rgb(6, 176, 249), rgb(13, 129, 241))",
         "videoIds": [
             "HEXWRTEbj1I"
@@ -24,7 +24,7 @@
     {
         "title": "Marketing stories",
         "description": "Lorem ipsum dolor",
-        "icon": "history.svg",
+        "icon": "",
         "background": "linear-gradient(rgb(157, 204, 28), rgb(102, 168, 15))",
         "videoIds": [
             "HEXWRTEbj1I"
@@ -33,7 +33,7 @@
     {
         "title": "Content Marketing",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "history.svg",
+        "icon": "contentmarketing.svg",
         "background": "linear-gradient(rgb(213, 67, 37), rgb(170, 48, 29))",
         "videoIds": [
             "EY72Qqj7G6M",
@@ -43,7 +43,7 @@
     {
         "title": "Design Marketing",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "history.svg",
+        "icon": "design.svg",
         "background": "linear-gradient(rgb(116, 235, 217), rgb(71, 229, 199))",
         "videoIds": [
             "tKi9Z-f6qX4"
@@ -52,56 +52,56 @@
     {
         "title": "Growth Hacking",
         "description": "",
-        "icon": "",
+        "icon": "growthhacking.svg",
         "background": "linear-gradient(rgb(6, 176, 249), rgb(13, 129, 241))",
         "videoIds": []
     },
     {
         "title": "Email Marketing",
         "description": "",
-        "icon": "",
+        "icon": "emailmarketing.svg",
         "background": "linear-gradient(rgb(14, 138, 243), rgb(10, 117, 196))",
         "videoIds": []
     },
     {
         "title": "PPC / SEM (Paid Marketing)",
         "description": "",
-        "icon": "",
+        "icon": "PPC.svg",
         "background": "linear-gradient(rgb(254, 204, 2), rgb(224, 180, 0))",
         "videoIds": []
     },
     {
         "title": "Product Marketing",
         "description": "",
-        "icon": "",
+        "icon": "productmarketing.svg",
         "background": "linear-gradient(rgb(3, 122, 191), rgb(1, 81, 121))",
         "videoIds": []
     },
     {
         "title": "B2B Marketing",
         "description": "",
-        "icon": "",
+        "icon": "b2b.svg",
         "background": "linear-gradient(rgb(3, 122, 191), rgb(1, 81, 121))",
         "videoIds": []
     },
     {
         "title": "B2C Marketing",
         "description": "",
-        "icon": "",
+        "icon": "b2c.svg",
         "background": "linear-gradient(rgb(95, 155, 75), rgb(66, 103, 50))",
         "videoIds": []
     },
     {
         "title": "ABM Marketing",
         "description": "",
-        "icon": "",
+        "icon": "abm.svg",
         "background": "linear-gradient(rgb(255, 163, 17), rgb(226, 133, 0))",
         "videoIds": []
     },
     {
         "title": "Social Media Marketing",
         "description": "",
-        "icon": "",
+        "icon": "socialmedia.svg",
         "background": "linear-gradient(rgb(255, 199, 45), rgb(249, 174, 0))",
         "videoIds": []
     },

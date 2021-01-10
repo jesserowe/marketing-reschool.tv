@@ -158,7 +158,7 @@ function App() {
       {sidePannelShowing && <div className='w-480 h-screen flex-shrink-0 bg-near-black overflow-auto'>
         {/* logo and future login controls */}
         <div className='flex items-center'>
-          <img className='w-16 h-16 m-2' src={logo} alt='logo' />
+          <img className='w-11/12 m-auto my-5' src={logo} alt='logo' />
         </div>
         {/* buttons panel */}
         <div className='grid grid-cols-3'>
@@ -192,9 +192,9 @@ function App() {
               )
           ))}
         </div>
-        <div className='text-white text-center opacity-70 m-5'>
+        {/* <div className='text-white text-center opacity-70 m-5'>
           Icons made by <a href='https://www.flaticon.com/free-icon/history_2234770?related_item_id=2234770&term=history' title='monkik'>monkik</a> from <a href='https://www.flaticon.com/' title='Flaticon'>www.flaticon.com</a>
-        </div>
+        </div> */}
       </div>}
     </div >
   );
