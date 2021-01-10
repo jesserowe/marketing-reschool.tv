@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import YouTube from 'react-youtube'
 import channels from './channels.json'
 import logo from './images/logo.png'
