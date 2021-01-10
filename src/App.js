@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import YouTube from 'react-youtube'
 import channels from './channels.json'
 import logo from './images/logo.png'
@@ -12,6 +12,12 @@ function App() {
   const [currentVideoAuthor, setCurrentVideoAuthor] = useState()
   const [isMuted, setIsMuted] = useState(true)
   const [isPlaying, setIsPlaying] = useState(true)
+  const [videoProgress, setVideoProgress] = useState(0)
+
+  useEffect(() => {
+    const intervalId = setInterval(() => videoControls && setVideoProgress(videoControls.playerInfo.currentTime / videoControls.getDuration() * 100), 50)
+    return () => clearTimeout(intervalId)
+  })
 
   useEffect(() => {
     setVideoIndex(Math.floor(Math.random() * channels[activeCategoryIndex].videoIds.length))
@@ -30,7 +36,7 @@ function App() {
       {/* video player */}
       <div className='relative flex-grow flex-shrink h-screen'>
         {/* mute button container */}
-        <div className='absolute w-full h-48 bg-black'>
+        <div className='absolute w-full h-28 bg-black'>
           {videoControls && isMuted && (
             <button
               className='bg-white rounded-md w-48 h-12 m-5 flex items-center justify-evenly font-bold'
@@ -48,6 +54,8 @@ function App() {
           videoId={videoId}
           opts={{ playerVars: { autoplay: 1, mute: 1, controls: 0 } }}
           onEnd={nextVideo}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
           onReady={({ target }) => {
             const { author, title } = target.getVideoData()
             setCurrentVideoTitle(title)
@@ -56,7 +64,7 @@ function App() {
           }}
         />
         {/* player controls */}
-        <div className='absolute bottom-0 w-full h-48 bg-black'>
+        <div className='absolute bottom-0 w-full h-40 bg-black'>
           {videoControls && <div className='absolute bottom-0 left-0 right-0 m-3 rounded-lg bg-gray-1000 text-white p-2'>
             {currentVideoAuthor && <p className='font-bold p-1'>{currentVideoAuthor}</p>}
             {currentVideoTitle && <p className='p-1'>{currentVideoTitle}</p>}
@@ -96,7 +104,12 @@ function App() {
                   }
                 </svg>
               </button>
-              <button className='flex-grow bg-white h-1 opacity-70'> {/* progress bar button */}
+              <button
+                className='flex-grow bg-white relative bg-progress-bar-gray h-1'
+                onClick={(e) => { console.log(videoControls.playerInfo.currentTime) }}
+              > {/* progress bar button */}
+                <div className='absolute h-1 top-0 left-0 bg-white' style={{ width: `${videoProgress}%` }}></div>
+                <span className='absolute h-3 w-3 rounded-lg bg-white' style={{ left: `calc(${videoProgress}% - 0.365rem)`, top: '-0.25rem' }}></span>
               </button>
               {videoControls && <p className=''></p>}
             </div>
