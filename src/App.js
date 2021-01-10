@@ -13,7 +13,10 @@ function App() {
   const [isMuted, setIsMuted] = useState(true)
   const [isPlaying, setIsPlaying] = useState(true)
 
-  useEffect(() => { setVideoIndex(Math.floor(Math.random() * channels[activeCategoryIndex].videoIds.length)) }, [activeCategoryIndex])
+  useEffect(() => {
+    setVideoIndex(Math.floor(Math.random() * channels[activeCategoryIndex].videoIds.length))
+    setIsPlaying(true)
+  }, [activeCategoryIndex])
 
   useEffect(() => { setVideoId(channels[activeCategoryIndex].videoIds[videoIndex]) }, [videoIndex, activeCategoryIndex])
 
@@ -108,8 +111,8 @@ function App() {
         </div>
         {/* buttons panel */}
         <div className='grid grid-cols-3'>
-          {channels.map(({ title, background, icon, description }, index) => {
-            return (index - 3) % 7 === 0
+          {channels.map(({ title, background, icon, description }, index) => (
+            (index - 3) % 7 === 0
               ? ( // wide button
                 <button
                   key={index}
@@ -136,7 +139,7 @@ function App() {
                   {description && <p className='text-xs w-11/12 opacity-70'>{description}</p>}
                 </button>
               )
-          })}
+          ))}
         </div>
         <div className='text-white text-center opacity-70 m-5'>
           Icons made by <a href='https://www.flaticon.com/free-icon/history_2234770?related_item_id=2234770&term=history' title='monkik'>monkik</a> from <a href='https://www.flaticon.com/' title='Flaticon'>www.flaticon.com</a>
