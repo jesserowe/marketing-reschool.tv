@@ -3,9 +3,12 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      width: {
-        '480': '480px'
-      }
+      colors: {
+        'gray-1000': 'rgba(34, 34, 34, 0.9)',
+        'near-black': '#202020'
+      },
+      width: { '480': '480px' },
+      inset: { '-1/8': '-12.5%' }
     },
   },
   variants: {
