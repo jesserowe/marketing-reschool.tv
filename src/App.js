@@ -15,9 +15,9 @@ function App() {
 
   useEffect(() => { setVideoIndex(Math.floor(Math.random() * channels[activeCategoryIndex].videoIds.length)) }, [activeCategoryIndex])
 
-  useEffect(() => { setVideoId(channels[activeCategoryIndex].videoIds[videoIndex]) }, [videoIndex])
+  useEffect(() => { setVideoId(channels[activeCategoryIndex].videoIds[videoIndex]) }, [videoIndex, activeCategoryIndex])
 
-  useEffect(() => { videoControls && (isMuted ? videoControls.mute() : videoControls.unMute()) }, [videoControls])
+  useEffect(() => { videoControls && (isMuted ? videoControls.mute() : videoControls.unMute()) }, [videoControls, isMuted])
 
   const nextVideo = () => setVideoIndex((videoIndex + 1) % channels[activeCategoryIndex].videoIds.length)
   const prevVideo = () => setVideoIndex(videoIndex === 0 ? channels[activeCategoryIndex].videoIds.length : videoIndex - 1)
