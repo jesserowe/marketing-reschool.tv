@@ -13,12 +13,7 @@ function App() {
   const [isMuted, setIsMuted] = useState(true)
   const [isPlaying, setIsPlaying] = useState(true)
 
-  const videoTitle = videoControls && videoControls.getVideoData().title
-
-  useEffect(() => {
-    // console.log(activeCategoryIndex)
-    setVideoIndex(Math.floor(Math.random() * channels[activeCategoryIndex].videoIds.length))
-  }, [activeCategoryIndex])
+  useEffect(() => { setVideoIndex(Math.floor(Math.random() * channels[activeCategoryIndex].videoIds.length)) }, [activeCategoryIndex])
 
   useEffect(() => { setVideoId(channels[activeCategoryIndex].videoIds[videoIndex]) }, [videoIndex])
 
@@ -55,8 +50,6 @@ function App() {
             setCurrentVideoTitle(title)
             setCurrentVideoAuthor(author)
             setVideoControls(target)
-            // isMuted ? target.unMute() : target.mute()
-            // target.playVideo()
           }}
         />
         {/* player controls */}
