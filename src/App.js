@@ -45,17 +45,18 @@ function App() {
   const nextVideo = () => setVideoIndex((videoIndex + 1) % channels[activeChannel].videoIds.length)
   const prevVideo = () => setVideoIndex(videoIndex === 0 ? channels[activeChannel].videoIds.length : videoIndex - 1)
 
-  const remainingSeconds = videoControls ? Math.floor(videoControls.getDuration() - videoControls.playerInfo.currentTime) : 0
-
-  const remainingMinutes = Math.floor(remainingSeconds / 60)
-
   const updateVolume = throttle((pageY) => {
-    const { bottom } = volumeSlideBar.current.getBoundingClientRect()
-    const newVolume = Math.max(Math.min(Math.round(bottom - pageY), 100), 0)
-    videoControls.setVolume(newVolume)
-    setVolume(newVolume)
-    setIsMuted(newVolume === 0)
-  }, 50)
+    if (volumeSlideBar.current) {
+      const { bottom } = volumeSlideBar.current.getBoundingClientRect()
+      const newVolume = Math.max(Math.min(Math.round(bottom - pageY), 100), 0)
+      videoControls.setVolume(newVolume)
+      setVolume(newVolume)
+      setIsMuted(newVolume === 0)
+    }
+  }, 30)
+
+  const remainingSeconds = videoControls ? Math.floor(videoControls.getDuration() - videoControls.playerInfo.currentTime) : 0
+  const remainingMinutes = Math.floor(remainingSeconds / 60)
 
   return (
     <div className='flex w-screen'>
@@ -130,8 +131,8 @@ function App() {
                     onMouseMove={(e) => volumeChanging && updateVolume(e.pageY)}
                   >
                     <div ref={volumeSlideBar} className='w-1 h-4/6 m-auto bg-volume-slider-gray relative focus:outline-none'>
-                      <div className={`absolute w-1 left-0 bottom-0 bg-white transition-height ${volumeChanging ? '' : 'duration-500'}`} style={{ height: `${volume}%` }} />
-                      <span className={`absolute h-3 w-3 rounded-lg bg-white -right-1 transition-bottom ${volumeChanging ? '' : 'duration-500'}`} style={{ bottom: `${volume}%` }} />
+                      <div className={`absolute w-1 left-0 bottom-0 bg-white ${volumeChanging ? '' : 'transition-height duration-300'}`} style={{ height: `${volume}%` }} />
+                      <span className={`absolute h-3 w-3 rounded-lg bg-white -right-1 ${volumeChanging ? '' : 'transition-bottom duration-300'}`} style={{ bottom: `${volume}%` }} />
                     </div>
                   </button>
                 )}
