@@ -15,10 +15,10 @@ module.exports = {
       },
       width: { '480': '480px' },
       inset: { '-1/8': '-12.5%' }
-    },
+    }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 }
