@@ -24,7 +24,7 @@
     {
         "title": "Marketing stories",
         "description": "Lorem ipsum dolor",
-        "icon": "",
+        "icon": "stories.svg",
         "background": "linear-gradient(rgb(157, 204, 28), rgb(102, 168, 15))",
         "videoIds": [
             "HEXWRTEbj1I"
@@ -108,14 +108,14 @@
     {
         "title": "Marketing ReSchool: 101",
         "description": "",
-        "icon": "",
+        "icon": "marketing-reschool.png",
         "background": "linear-gradient(rgb(147, 210, 46), rgb(122, 169, 36))",
         "videoIds": []
     },
     {
         "title": "VeryGoodCopy",
         "description": "",
-        "icon": "",
+        "icon": "copy.png",
         "background": "linear-gradient(rgb(224, 10, 42), rgb(160, 10, 29))",
         "videoIds": []
     }
