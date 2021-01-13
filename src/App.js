@@ -247,7 +247,7 @@ function App() {
                       {title && <p className='font-bold m-1 text-xl'>{title}</p>}
                       {description && <p className='text-sm opacity-70'>{description}</p>}
                     </div>
-                    {icon && <img className='w-44 h-44 absolute -bottom-1/4 -right-1/8' src={`${process.env.PUBLIC_URL}/assets/${icon}`} alt='' />}
+                    {icon && <img className='w-36 h-36 absolute -bottom-1/8 right-0' src={`${process.env.PUBLIC_URL}/assets/${icon}`} alt='' />}
                   </button>
                 )
                 : ( // narrow button
