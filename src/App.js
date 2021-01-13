@@ -173,7 +173,14 @@ function App() {
                   className='flex-grow h-10 focus:outline-none'
                   onMouseDown={() => setVideoProgressChanging(true)}
                   onMouseUp={() => setVideoProgressChanging(false)}
-                  onMouseLeave={() => setVideoProgressChanging(false)}
+                  onMouseLeave={e => {
+                    if (videoProgressChanging) {
+                      const { left, width } = progressBar.current.getBoundingClientRect()
+                      setVideoProgress(clamp(Math.round((e.clientX - left) / width * 100), 0, 100))
+                      videoControls.seekTo(Math.round((e.clientX - left) / width * videoControls.getDuration()))
+                      setVideoProgressChanging(false)
+                    }
+                  }}
                   onMouseMove={e => {
                     if (videoProgressChanging) {
                       const { left, width } = progressBar.current.getBoundingClientRect()
