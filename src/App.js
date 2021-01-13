@@ -3,6 +3,7 @@ import YouTube from 'react-youtube'
 import channels from './channels.json'
 import logo from './images/logo.png'
 import throttle from 'lodash/throttle'
+import clamp from 'lodash/clamp'
 
 function App() {
   const progressBar = useRef()
@@ -16,7 +17,7 @@ function App() {
   const [isMuted, setIsMuted] = useState(true)
   const [isPlaying, setIsPlaying] = useState(true)
   const [videoProgress, setVideoProgress] = useState(0)
-  // const [videoProgressChanging, setVideoProgressChanging] = useState(false)
+  const [videoProgressChanging, setVideoProgressChanging] = useState(false)
   const [sidePannelShowing, setSidePannelShowing] = useState(true)
   const [youtubeLinkShowing, setYoutubeLinkShowing] = useState(false)
   const [volumeControlOpen, setVolumeControlOpen] = useState(false)
@@ -25,7 +26,9 @@ function App() {
 
   useEffect(() => { // update the progressBar progress every 50 ms
     const intervalId = setInterval(() => {
-      videoControls && setVideoProgress(videoControls.playerInfo.currentTime / videoControls.getDuration() * 100)
+      if (videoControls && !videoProgressChanging) {
+        setVideoProgress(videoControls.playerInfo.currentTime / videoControls.getDuration() * 100)
+      }
     }, 50)
     return () => clearTimeout(intervalId)
   })
@@ -45,11 +48,13 @@ function App() {
   const nextVideo = () => setVideoIndex((videoIndex + 1) % channels[activeChannel].videoIds.length)
   const prevVideo = () => setVideoIndex(videoIndex === 0 ? channels[activeChannel].videoIds.length : videoIndex - 1)
 
-  const updateVolume = throttle((pageY) => {
+  const updateVolume = throttle((e) => {
     if (volumeSlideBar.current) {
       const { bottom } = volumeSlideBar.current.getBoundingClientRect()
-      const newVolume = Math.max(Math.min(Math.round(bottom - pageY), 100), 0)
+      // TODO: figure out this magic 6
+      const newVolume = clamp(Math.round(bottom - e.pageY) + 6, 0, 100)
       videoControls.setVolume(newVolume)
+      console.log(newVolume)
       setVolume(newVolume)
       setIsMuted(newVolume === 0)
     }
@@ -124,15 +129,21 @@ function App() {
                 {volumeControlOpen && (
                   <button
                     className='absolute bottom-full left-0 h-28 w-7 bg-submenu-gray rounded-md focus:outline-none'
-                    onMouseUp={(e) => setVolumeChanging(false)}
-                    onMouseLeave={(e) => setVolumeChanging(false)}
-                    onMouseDown={(e) => setVolumeChanging(true)}
-                    onClick={(e) => updateVolume(e.pageY)}
-                    onMouseMove={(e) => volumeChanging && updateVolume(e.pageY)}
+                    onMouseUp={() => setVolumeChanging(false)}
+                    onMouseLeave={() => setVolumeChanging(false)}
+                    onMouseDown={() => setVolumeChanging(true)}
+                    onClick={e => updateVolume(e)}
+                    onMouseMove={e => volumeChanging && updateVolume(e)}
                   >
                     <div ref={volumeSlideBar} className='w-1 h-4/6 m-auto bg-volume-slider-gray relative focus:outline-none'>
-                      <div className={`absolute w-1 left-0 bottom-0 bg-white ${volumeChanging ? '' : 'transition-height duration-300'}`} style={{ height: `${volume}%` }} />
-                      <span className={`absolute h-3 w-3 rounded-lg bg-white -right-1 ${volumeChanging ? '' : 'transition-bottom duration-300'}`} style={{ bottom: `${volume}%` }} />
+                      <div
+                        className={`absolute w-1 left-0 bottom-0 bg-white ${volumeChanging ? '' : 'transition-height duration-300'}`}
+                        style={{ height: `${volume}%` }}
+                      />
+                      <span
+                        className={`absolute h-3 w-3 rounded-lg bg-white -right-1 ${volumeChanging ? '' : 'transition-bottom duration-300'}`}
+                        style={{ bottom: `${volume}%` }}
+                      />
                     </div>
                   </button>
                 )}
@@ -154,15 +165,25 @@ function App() {
               </div>
               <button
                 ref={progressBar}
-                className='flex-grow relative bg-progress-bar-gray h-1 focus:outline-none'
+                className='flex-grow h-10 focus:outline-none'
+                onMouseDown={() => setVideoProgressChanging(true)}
+                onMouseUp={() => setVideoProgressChanging(false)}
+                onMouseLeave={() => setVideoProgressChanging(false)}
+                onMouseMove={e => {
+                  if (videoProgressChanging) {
+                    const { left, width } = progressBar.current.getBoundingClientRect()
+                    setVideoProgress(clamp(Math.round((e.clientX - left) / width * 100), 0, 100))
+                  }
+                }}
                 onClick={(e) => {
-                  // TODO: figure out why the target's bounding rectangle changes each time this is triggered
                   const { left, width } = progressBar.current.getBoundingClientRect()
-                  videoControls.seekTo((e.clientX - left) / width * videoControls.getDuration())
+                  videoControls.seekTo(Math.round((e.clientX - left) / width * videoControls.getDuration()))
                 }}
               > {/* progress bar button */}
-                <div className='absolute h-1 top-0 left-0 bg-white' style={{ width: `${videoProgress}%` }}></div>
-                <span className='absolute h-3 w-3 rounded-lg bg-white -top-1' style={{ left: `calc(${videoProgress}% - 0.375rem)` }}></span>
+                <div className='relative bg-progress-bar-gray h-1 w-full m-auto'>
+                  <div className='absolute h-1 top-0 left-0 bg-white' style={{ width: `${videoProgress}%` }} />
+                  <span className='absolute h-3 w-3 rounded-lg bg-white -top-1' style={{ left: `calc(${videoProgress}% - 0.375rem)` }} />
+                </div>
               </button>
               <p className='m-4 opacity-70 text-sm'>
                 {remainingMinutes}:{(remainingSeconds - (remainingMinutes * 60)).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}
