@@ -60,7 +60,7 @@
         "title": "Email Marketing",
         "description": "",
         "icon": "emailmarketing.svg",
-        "background": "linear-gradient(rgb(224, 10, 42), rgb(160, 10, 29))",
+        "background": "linear-gradient(rgb(14, 138, 243), rgb(10, 117, 196))",
         "videoIds": []
     },
     {
@@ -116,7 +116,7 @@
         "title": "VeryGoodCopy",
         "description": "",
         "icon": "copy.png",
-        "background": "linear-gradient(rgb(14, 138, 243), rgb(10, 117, 196))",
+        "background": "linear-gradient(rgb(224, 10, 42), rgb(160, 10, 29))",
         "videoIds": []
     }
 ]
