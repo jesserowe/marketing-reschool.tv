@@ -34,10 +34,10 @@ const VideoTemplate = ({ pageContext: { channelTitle, videoId } }) => {
         <meta charSet="utf-8" />
         <title>{title}</title>
         <meta name="og:title" content={title} />
-        <meta name="og:image" content={`https://img.youtube.com/vi/${videoId}/default.jpg`} />
+        <meta name="og:image" content={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} />
 
         <meta name="twitter:title" content={title} />
-        <meta name="twitter:image" content={`https://img.youtube.com/vi/${videoId}/default.jpg`} />
+        <meta name="twitter:image" content={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} />
       </Helmet>
       <ShareModal isOpen={shareModalOpen} title={title} author={author} onClose={() => setShareModalOpen(false)} />
       <div className="absolute z-0 w-screen h-screen bg-near-black lg:hidden text-center flex">

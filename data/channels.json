@@ -1,7 +1,7 @@
 [
     {
         "title": "History of Marketing",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "description": "Deep dives into the marketing stories of yesterday",
         "icon": "history.svg",
         "background": "linear-gradient(rgb(255, 165, 9), rgb(227, 135, 0))",
         "videoIds": [
@@ -19,7 +19,7 @@
     },
     {
         "title": "Vintage commercials",
-        "description": "Lorem ipsum dolor sit amet",
+        "description": "Topical commercials from the past decade",
         "icon": "vintage.svg",
         "background": "linear-gradient(rgb(6, 176, 249), rgb(13, 129, 241))",
         "videoIds": [
@@ -47,7 +47,7 @@
     },
     {
         "title": "Marketing stories",
-        "description": "Lorem ipsum dolor",
+        "description": "Tales about success and defeat from the battlefield",
         "icon": "stories.svg",
         "background": "linear-gradient(rgb(157, 204, 28), rgb(102, 168, 15))",
         "videoIds": [
@@ -92,7 +92,7 @@
     },
     {
         "title": "Content Marketing",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "description": "Write the best words, in every situation",
         "icon": "contentmarketing.svg",
         "background": "linear-gradient(rgb(213, 67, 37), rgb(170, 48, 29))",
         "videoIds": [
@@ -137,8 +137,8 @@
         ]
     },
     {
-        "title": "Design Marketing",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "title": "Design in Marketing",
+        "description": "From Graphic to UI, you'll be mesmerized",
         "icon": "design.svg",
         "background": "linear-gradient(rgb(116, 235, 217), rgb(71, 229, 199))",
         "videoIds": [
@@ -212,7 +212,7 @@
     },
     {
         "title": "Growth Hacking",
-        "description": "",
+        "description": "There isn't anything you can't scrape and automate",
         "icon": "growthhacking.svg",
         "background": "linear-gradient(rgb(6, 176, 249), rgb(13, 129, 241))",
         "videoIds": [
@@ -251,7 +251,7 @@
     },
     {
         "title": "Email Marketing",
-        "description": "",
+        "description": "Best practices on email automation and outbound",
         "icon": "emailmarketing.svg",
         "background": "linear-gradient(rgb(14, 138, 243), rgb(10, 117, 196))",
         "videoIds": [
@@ -294,8 +294,8 @@
         ]
     },
     {
-        "title": "PPC / SEM (Paid Marketing)",
-        "description": "",
+        "title": "Paid Marketing",
+        "description": "PPC & SEM strategies that'll level you up",
         "icon": "PPC.svg",
         "background": "linear-gradient(rgb(254, 204, 2), rgb(224, 180, 0))",
         "videoIds": [
@@ -342,7 +342,7 @@
     },
     {
         "title": "Product Marketing",
-        "description": "",
+        "description": "If you can't go to market, you can't be in market",
         "icon": "productmarketing.svg",
         "background": "linear-gradient(rgb(3, 122, 191), rgb(1, 81, 121))",
         "videoIds": [
@@ -352,21 +352,21 @@
     },
     {
         "title": "B2B Marketing",
-        "description": "",
+        "description": "Whether it's SMBs or Enterprise, B2B is king",
         "icon": "b2b.svg",
         "background": "linear-gradient(rgb(3, 122, 191), rgb(1, 81, 121))",
         "videoIds": []
     },
     {
         "title": "B2C Marketing",
-        "description": "",
+        "description": "Consumers rule the world (and marketing too)",
         "icon": "b2c.svg",
         "background": "linear-gradient(rgb(95, 155, 75), rgb(66, 103, 50))",
         "videoIds": []
     },
     {
         "title": "ABM Marketing",
-        "description": "",
+        "description": "The best way to make a warm intro",
         "icon": "abm.svg",
         "background": "linear-gradient(rgb(255, 163, 17), rgb(226, 133, 0))",
         "videoIds": [
@@ -400,7 +400,7 @@
     },
     {
         "title": "Social Media Marketing",
-        "description": "",
+        "description": "It's important for every business to be social ",
         "icon": "socialmedia.svg",
         "background": "linear-gradient(rgb(255, 199, 45), rgb(249, 174, 0))",
         "videoIds": [
