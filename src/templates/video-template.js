@@ -8,6 +8,7 @@ import channels from "../../data/channels.json"
 import logo from "../images/logo.png"
 import PlayerControls from "../components/PlayerControls"
 import { sample, shuffle } from "lodash"
+import "tailwindcss/tailwind.css"
 
 const VideoTemplate = ({ pageContext: { channelTitle, videoId } }) => {
   const activeChannel = channels.find(({ title }) => title === channelTitle)

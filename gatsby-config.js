@@ -6,12 +6,12 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-layout`,
-      options: {
-        component: require.resolve(`${__dirname}/src/components/Layout`),
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-layout`,
+    //   options: {
+    //     component: require.resolve(`${__dirname}/src/components/Layout`),
+    //   },
+    // },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
