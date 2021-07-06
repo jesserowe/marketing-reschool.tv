@@ -10,7 +10,9 @@ import PlayerControls from "../components/PlayerControls"
 import { sample, shuffle } from "lodash"
 import "tailwindcss/tailwind.css"
 
-const VideoTemplate = ({ pageContext: { channelTitle, videoId } }) => {
+const VideoTemplate = ({ pageContext }) => {
+  console.log(pageContext)
+  const { channelTitle, videoId } = pageContext
   const activeChannel = channels.find(({ title }) => title === channelTitle)
   // const videoIds = shuffle(activeChannel.videoIds)
   const videoIds = activeChannel.videoIds
