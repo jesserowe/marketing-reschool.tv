@@ -19,7 +19,6 @@ exports.createPages = async ({ actions: { createPage } }) => {
         )
       ).data
 
-
        items.forEach(({ snippet }) => {
         const videoId = snippet.resourceId.videoId
         const videoTitle = snippet.title
