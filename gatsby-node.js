@@ -2,10 +2,9 @@ const axios = require("axios")
 
 exports.createPages = async ({ actions: { createPage } }) => {
   // call createPage for every single video with info about videoId and title
-  require("./data/channels.json")
-    .filter(({ playlistId }) => playlistId)
-    .forEach(async ({ playlistId }) => {
-      const playlistData = (
+  const channels = await require("./data/channels.json").filter(({ playlistId }) => playlistId)
+  await Promise.all(channels.map(async ({ playlistId }) => {
+      const playlistData = await (
         await axios.get(
           `https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=${playlistId}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
         )
@@ -20,14 +19,14 @@ exports.createPages = async ({ actions: { createPage } }) => {
         )
       ).data
 
-      items.forEach(({ snippet }) => {
+       items.forEach(({ snippet }) => {
         const videoId = snippet.resourceId.videoId
         const videoTitle = snippet.title
         createPage({
-          path: `/${playlistId}/${videoId}`,
+          path: `${videoId}`,
           component: require.resolve("./src/templates/video-template.js"),
           context: { channelTitle, videoId, videoTitle },
         })
       })
-    })
+    }))
 }
