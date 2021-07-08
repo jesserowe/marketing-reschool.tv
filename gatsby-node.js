@@ -19,13 +19,14 @@ exports.createPages = async ({ actions: { createPage } }) => {
         )
       ).data
 
+
        items.forEach(({ snippet }) => {
         const videoId = snippet.resourceId.videoId
         const videoTitle = snippet.title
         createPage({
-          path: `${videoId}`,
+          path: `/${playlistId}/${videoId}`,
           component: require.resolve("./src/templates/video-template.js"),
-          context: { channelTitle, videoId, videoTitle },
+          context: { channelTitle, videoId, videoTitle, playlistId, channelVideoIds: items.map(item => item.snippet.resourceId.videoId)},
         })
       })
     }))

@@ -12,11 +12,14 @@ import "tailwindcss/tailwind.css"
 
 const VideoTemplate = ({ pageContext }) => {
   console.log(pageContext)
-  const { channelTitle, videoId } = pageContext
-  const activeChannel = channels.find(({ title }) => title === channelTitle)
+  const { channelTitle, videoId, videoTitle, channelVideoIds } = pageContext
+  const templatePlaylistId = pageContext.playlistId
+  const activeChannel = channels.find(({playlistId}) => playlistId === templatePlaylistId);
   // const videoIds = shuffle(activeChannel.videoIds)
-  const videoIds = activeChannel.videoIds
-  const videoIndex = activeChannel.videoIds.indexOf(videoId)
+  channelVideoIds.forEach(videoId => activeChannel.videoIds.push(videoId))
+  activeChannel.title = videoTitle
+  const videoIds = channelVideoIds
+  const videoIndex = videoIds.indexOf(videoId)
 
   const [controls, setControls] = useState()
   const [title, setTitle] = useState("")
@@ -42,18 +45,18 @@ const VideoTemplate = ({ pageContext }) => {
         <meta name="twitter:image" content={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} />
       </Helmet>
       <ShareModal isOpen={shareModalOpen} title={title} author={author} onClose={() => setShareModalOpen(false)} />
-      <div className="absolute z-0 w-screen h-screen bg-near-black lg:hidden text-center flex">
-        <p className="text-xl max-w-xl w-11/12 m-auto text-white">
+      <div className="absolute z-0 flex w-screen h-screen text-center bg-near-black lg:hidden">
+        <p className="w-11/12 max-w-xl m-auto text-xl text-white">
           Unfortunately, Marketing TV isn't optimized for mobile viewing just yet. Please revisit from a desktop
           browser.
         </p>
       </div>
-      <div className="w-screen hidden lg:flex">
+      <div className="hidden w-screen lg:flex">
         <div id="video-player" className="relative flex-grow flex-shrink h-screen">
           <div className="absolute w-full h-24 bg-black">
             {isMuted && (
               <button
-                className="bg-white rounded-md w-48 h-12 m-5 flex items-center justify-evenly font-bold"
+                className="flex items-center w-48 h-12 m-5 font-bold bg-white rounded-md justify-evenly"
                 onClick={() => setIsMuted(false)}
               >
                 <svg viewBox="0 0 24 24" height="24" width="24">
@@ -69,7 +72,7 @@ const VideoTemplate = ({ pageContext }) => {
             className="w-full h-full"
             videoId={videoId}
             opts={{ playerVars: { autoplay: 1, mute: 1, controls: 0 } }}
-            onEnd={() => navigate(`/${channelTitle}/${videoIds[videoIndex + (1 % videoIds.length)]}`)}
+            onEnd={() => navigate(`/${activeChannel.playlistId}/${videoIds[videoIndex + (1 % videoIds.length)]}`)}
             onPlay={() => {
               setTitle(controls.getVideoData().title)
               setAuthor(controls.getVideoData().author)
@@ -86,9 +89,9 @@ const VideoTemplate = ({ pageContext }) => {
             setIsMuted={setIsMuted}
             isPlaying={isPlaying}
             onPrev={() =>
-              navigate(`/${channelTitle}/${videoIds[(videoIndex === 0 ? videoIds.length : videoIndex) - 1]}`)
+              navigate(`/${activeChannel.playlistId}/${videoIds[(videoIndex === 0 ? videoIds.length : videoIndex) - 1]}`)
             }
-            onNext={() => navigate(`/${channelTitle}/${videoIds[(videoIndex + 1) % videoIds.length]}`)}
+            onNext={() => navigate(`/${activeChannel.playlistId}/${videoIds[(videoIndex + 1) % videoIds.length]}`)}
             sidePannelShowing={sidePannelShowing}
             setSidePannelShowing={setSidePannelShowing}
             shareModalOpen={shareModalOpen}
@@ -96,13 +99,13 @@ const VideoTemplate = ({ pageContext }) => {
           />
         </div>
         {sidePannelShowing && (
-          <div className="w-480 h-screen flex-shrink-0 bg-near-black overflow-auto">
-            <div className="flex items-center fixed bg-near-black z-10">
+          <div className="flex-shrink-0 h-screen overflow-auto w-480 bg-near-black">
+            <div className="fixed z-10 flex items-center bg-near-black">
               <img className="w-11/12 m-auto my-5" src={logo} alt="logo" />
             </div>
             <ChannelSelector
               activeChannel={activeChannel}
-              onChannelSelected={channel => navigate(`/${channel.title}/${sample(channel.videoIds)}`)}
+              onChannelSelected={channel => navigate(`/${channel.playlistId}/${sample(channel.videoIds)}`)}
             />
           </div>
         )}
