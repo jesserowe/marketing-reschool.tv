@@ -17,7 +17,7 @@ const VideoTemplate = ({ pageContext }) => {
   const activeChannel = channels.find(({playlistId}) => playlistId === templatePlaylistId);
   // const videoIds = shuffle(activeChannel.videoIds)
   channelVideoIds.forEach(videoId => activeChannel.videoIds.push(videoId))
-  activeChannel.title = videoTitle
+  activeChannel.title = channelTitle
   const videoIds = channelVideoIds
   const videoIndex = videoIds.indexOf(videoId)
 
