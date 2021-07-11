@@ -9,7 +9,6 @@ exports.createPages = async ({ actions: { createPage } }) => {
           `https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=${playlistId}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
         )
       ).data
-      // console.log(playlistData.items[0].snippet)
       const channelTitle = playlistData.items[0].snippet.title
 
       // get the videoIds of the videos in the channel/playlist
