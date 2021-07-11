@@ -11,7 +11,6 @@ import { sample, shuffle } from "lodash"
 import "tailwindcss/tailwind.css"
 
 const VideoTemplate = ({ pageContext }) => {
-  console.log(pageContext)
   const { channelTitle, videoId, videoTitle, channelVideoIds } = pageContext
   const templatePlaylistId = pageContext.playlistId
   const activeChannel = channels.find(({playlistId}) => playlistId === templatePlaylistId);
