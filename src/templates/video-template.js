@@ -42,9 +42,12 @@ const VideoTemplate = ({ pageContext }) => {
         <title>{video.title}</title>
         <meta name="og:title" content={video.title} />
         <meta name="og:image" content={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} />
-
         <meta name="twitter:title" content={video.title} />
         <meta name="twitter:image" content={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} />
+
+        {/* privy widget */}
+        <script type="text/javascript">{`var _d_site = _d_site || '04E7E23B6DE4DEC6E6B4AA43';`}</script>
+        <script src="https://widget.privy.com/assets/widget.js"></script>
       </Helmet>
       <ShareModal
         isOpen={shareModalOpen}
