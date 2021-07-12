@@ -11,7 +11,7 @@ const IndexPage = () => {
   // const randomChannel = sample(channels)
   const randomChannel = channels[0]
 
-  isBrowser && navigate(`/${randomChannel.title}/${sample(randomChannel.videoIds)}`)
+  isBrowser && navigate(`/${randomChannel.playlistId}/${sample(randomChannel.videoIds)}`)
 
   return <div>should redirect to a video page</div>
 }
