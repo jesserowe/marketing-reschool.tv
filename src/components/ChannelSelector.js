@@ -1,17 +1,17 @@
 import React from "react"
-import channels from "../../data/channels.json"
+// import channels from "../../data/channels.json"
 
-const NarrowTile = ({ outlined, channel, onClick }) => (
+const NarrowTile = ({ outlined, channel: { background, icon, title, description }, onClick }) => (
   <button
     className={`rounded-lg m-2 text-center flex items-center text-white flex-col justify-center h-48 border-white focus:outline-none ${
       outlined ? "border-2" : ""
     }`}
-    style={{ background: channel.background }}
+    style={{ background }}
     onClick={onClick}
   >
-    {channel.icon && <img className="w-14 h-14" src={`/${channel.icon}`} alt="" />}
-    {channel.title && <p className="font-bold m-1 w-10/12">{channel.title}</p>}
-    {channel.description && <p className="text-xs w-11/12 opacity-70">{channel.description}</p>}
+    {icon && <img className="w-14 h-14" src={`/${icon}`} alt="" />}
+    {title && <p className="font-bold m-1 w-10/12">{title}</p>}
+    {description && <p className="text-xs w-11/12 opacity-70">{description}</p>}
   </button>
 )
 
@@ -31,21 +31,21 @@ const WideTile = ({ outlined, channel, onClick }) => (
   </button>
 )
 
-const ChannelSelector = ({ activeChannel, onChannelSelected }) => {
+const ChannelSelector = ({ channels, active, onChannelSelected }) => {
   return (
     <div className="grid grid-cols-3 mt-24">
       {channels.map((channel, index) =>
         (index - 3) % 7 === 0 ? (
           <WideTile
             key={channel.title}
-            outlined={channel.title === activeChannel.title}
+            outlined={channel.id === active.id}
             channel={channel}
             onClick={() => onChannelSelected(channel)}
           />
         ) : (
           <NarrowTile
             key={channel.title}
-            outlined={channel.title === activeChannel.title}
+            outlined={channel.id === active.id}
             channel={channel}
             onClick={() => onChannelSelected(channel)}
           />

@@ -4,13 +4,6 @@
         "description": "Deep dives into the marketing stories of yesterday",
         "icon": "history.svg",
         "background": "linear-gradient(rgb(255, 165, 9), rgb(227, 135, 0))",
-        "videoIds": [
-            "qAfUSrslxE8",
-            "hhQRH49Y54k",
-            "sR-qL7QdVZQ",
-            "dBnpr3pkFlk",
-            "t87NwBT5c88"
-        ],
         "playlistId": "PLrVVzxlvliV3ypTVrLyZSFcT5atoUI8nl"
     },
     {
@@ -118,7 +111,6 @@
         "background": "linear-gradient(rgb(3, 122, 191), rgb(1, 81, 121))",
         "videoIds": [],
         "playlistId": "PLrVVzxlvliV1mFYjIueE1VFgJndNNs5Gm"
-        
     },
     {
         "title": "B2B Marketing",
@@ -182,4 +174,3 @@
         "playlistId": ""
     }
 ]
-

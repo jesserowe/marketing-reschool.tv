@@ -4,46 +4,54 @@ import { Helmet } from "react-helmet"
 import YouTube from "react-youtube"
 import ShareModal from "../components/ShareModal"
 import ChannelSelector from "../components/ChannelSelector"
-import channels from "../../data/channels.json"
 import logo from "../images/logo.png"
 import PlayerControls from "../components/PlayerControls"
-import { sample, shuffle } from "lodash"
+import { sample } from "lodash"
 import "tailwindcss/tailwind.css"
 
 const VideoTemplate = ({ pageContext }) => {
-  const { channelTitle, videoId, videoTitle, channelVideoIds } = pageContext
-  const templatePlaylistId = pageContext.playlistId
-  const activeChannel = channels.find(({playlistId}) => playlistId === templatePlaylistId);
-  // const videoIds = shuffle(activeChannel.videoIds)
-  channelVideoIds.forEach(videoId => activeChannel.videoIds.push(videoId))
-  activeChannel.title = channelTitle
-  const videoIds = channelVideoIds
-  const videoIndex = videoIds.indexOf(videoId)
+  const { playlistId, videoId, playlists } = pageContext
+  const playlist = playlists.find(playlist => playlist.id === playlistId)
+  const video = playlist.videos.find(video => video.id === videoId)
+  const currentVideoIndex = playlist.videos.findIndex(video => video.id === videoId)
 
   const [controls, setControls] = useState()
-  const [title, setTitle] = useState("")
-  const [author, setAuthor] = useState("")
   const [isPlaying, setIsPlaying] = useState(true)
   const [sidePannelShowing, setSidePannelShowing] = useState(true)
   const [shareModalOpen, setShareModalOpen] = useState(false)
-
   const [isMuted, setIsMuted] = useState(true)
+
   useEffect(() => {
     controls && (isMuted ? controls.mute() : controls.unMute())
   }, [isMuted])
+
+  const navigateToNextVideo = () => {
+    navigate(`/${playlistId}/${playlist.videos[(currentVideoIndex + 1) % playlist.videos.length].id}`)
+  }
+
+  const navigateToPreviousVideo = () => {
+    navigate(
+      `/${playlistId}/${playlist.videos[currentVideoIndex === 0 ? playlist.videos.length : currentVideoIndex - 1].id}`
+    )
+  }
 
   return (
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{title}</title>
-        <meta name="og:title" content={title} />
+        <title>{video.title}</title>
+        <meta name="og:title" content={video.title} />
         <meta name="og:image" content={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} />
 
-        <meta name="twitter:title" content={title} />
+        <meta name="twitter:title" content={video.title} />
         <meta name="twitter:image" content={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} />
       </Helmet>
-      <ShareModal isOpen={shareModalOpen} title={title} author={author} onClose={() => setShareModalOpen(false)} />
+      <ShareModal
+        isOpen={shareModalOpen}
+        title={video.title}
+        author={video.author}
+        onClose={() => setShareModalOpen(false)}
+      />
       <div className="absolute z-0 flex w-screen h-screen text-center bg-near-black lg:hidden">
         <p className="w-11/12 max-w-xl m-auto text-xl text-white">
           Unfortunately, Marketing TV isn't optimized for mobile viewing just yet. Please revisit from a desktop
@@ -71,26 +79,20 @@ const VideoTemplate = ({ pageContext }) => {
             className="w-full h-full"
             videoId={videoId}
             opts={{ playerVars: { autoplay: 1, mute: 1, controls: 0 } }}
-            onEnd={() => navigate(`/${activeChannel.playlistId}/${videoIds[videoIndex + (1 % videoIds.length)]}`)}
-            onPlay={() => {
-              setTitle(controls.getVideoData().title)
-              setAuthor(controls.getVideoData().author)
-              setIsPlaying(true)
-            }}
+            onEnd={navigateToNextVideo}
+            onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
             onReady={({ target }) => setControls(target)}
           />
           <PlayerControls
             controls={controls}
-            title={title}
-            author={author}
+            title={video.title}
+            author={video.author}
             isMuted={isMuted}
             setIsMuted={setIsMuted}
             isPlaying={isPlaying}
-            onPrev={() =>
-              navigate(`/${activeChannel.playlistId}/${videoIds[(videoIndex === 0 ? videoIds.length : videoIndex) - 1]}`)
-            }
-            onNext={() => navigate(`/${activeChannel.playlistId}/${videoIds[(videoIndex + 1) % videoIds.length]}`)}
+            onPrev={navigateToPreviousVideo}
+            onNext={navigateToNextVideo}
             sidePannelShowing={sidePannelShowing}
             setSidePannelShowing={setSidePannelShowing}
             shareModalOpen={shareModalOpen}
@@ -103,8 +105,9 @@ const VideoTemplate = ({ pageContext }) => {
               <img className="w-11/12 m-auto my-5" src={logo} alt="logo" />
             </div>
             <ChannelSelector
-              activeChannel={activeChannel}
-              onChannelSelected={channel => navigate(`/${channel.playlistId}/${sample(channel.videoIds)}`)}
+              channels={playlists}
+              active={playlist}
+              onChannelSelected={playlist => navigate(`/${playlist.id}/${sample(playlist.videos).id}`)}
             />
           </div>
         )}
