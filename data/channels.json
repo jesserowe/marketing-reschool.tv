@@ -11,13 +11,6 @@
         "description": "Topical commercials from the past decade",
         "icon": "vintage.svg",
         "background": "linear-gradient(rgb(6, 176, 249), rgb(13, 129, 241))",
-        "videoIds": [
-            "U1qDZ6aGQOg",
-            "rL9_S0mbl9w",
-            "K3w2Gon-D1k",
-            "JRHUNcA_Nus",
-            "V9Ob0tjdr5M"
-        ],
         "playlistId": "PLrVVzxlvliV3QBS2jLc_2nZkT5tkAWuUe"
     },
     {
@@ -25,13 +18,6 @@
         "description": "Tales about success and defeat from the battlefield",
         "icon": "stories.svg",
         "background": "linear-gradient(rgb(157, 204, 28), rgb(102, 168, 15))",
-        "videoIds": [
-            "FWu2rkffYvg",
-            "ByOOIE86bLc",
-            "XhMVWzVXNNk",
-            "tbnGIh1aad0",
-            "LpMVGJlWnNk"
-        ],
         "playlistId": "PLrVVzxlvliV3kDWdlP6pmBEO9fpzt_TU0"
     },
     {
@@ -39,13 +25,6 @@
         "description": "Write the best words, in every situation",
         "icon": "contentmarketing.svg",
         "background": "linear-gradient(rgb(213, 67, 37), rgb(170, 48, 29))",
-        "videoIds": [
-            "osVm6UrwEYc",
-            "b5-GZwJgdrY",
-            "dBnpr3pkFlk",
-            "TH8CWIn7bzk",
-            "krOWNhbJGdU"
-        ],
         "playlistId": "PLrVVzxlvliV0FsPenvdGOCuJdrYnq_LZ-"
     },
     {
@@ -53,13 +32,6 @@
         "description": "From Graphic to UI, you'll be mesmerized",
         "icon": "design.svg",
         "background": "linear-gradient(rgb(116, 235, 217), rgb(71, 229, 199))",
-        "videoIds": [
-            "x0smq5ljlf4",
-            "RKXZ7t_RiOE",
-            "YqQx75OPRa0",
-            "M6NsEDwHHiE",
-            "_2LLXnUdUIc"
-        ],
         "playlistId": "PLrVVzxlvliV0sqbHwNzvtKWJ7ILUh7e4G"
     },
     {
@@ -67,13 +39,6 @@
         "description": "There isn't anything you can't scrape and automate",
         "icon": "growthhacking.svg",
         "background": "linear-gradient(rgb(6, 176, 249), rgb(13, 129, 241))",
-        "videoIds": [
-            "nCP4hXgE-Nk",
-            "CEvIng2TOjs",
-            "nzGGWoJky5M",
-            "-yAg4VCboGY",
-            "k693vBfb5Qs"
-        ],
         "playlistId": "PLrVVzxlvliV2uXjPOEcEeHwe5qLvD9Mr6"
     },
     {
@@ -81,13 +46,6 @@
         "description": "Best practices on email automation and outbound",
         "icon": "emailmarketing.svg",
         "background": "linear-gradient(rgb(14, 138, 243), rgb(10, 117, 196))",
-        "videoIds": [
-            "qYzmG_7nx3Y",
-            "WE4A-cTWonA",
-            "DjJDO0QNxpE",
-            "3iAsj2Glemc",
-            "2yX3Fh7j7is"
-        ],
         "playlistId": "PLrVVzxlvliV1FirUw43IMgRaMV2D0vpwa"
     },
     {
@@ -95,13 +53,6 @@
         "description": "PPC & SEM strategies that'll level you up",
         "icon": "PPC.svg",
         "background": "linear-gradient(rgb(254, 204, 2), rgb(224, 180, 0))",
-        "videoIds": [
-            "c0N1Y8Z5zJs",
-            "TaOA_Zy2XUw",
-            "fAZUyoH_4jY",
-            "L4rWyTsXmfA",
-            "P-PCoZzy4l8"
-        ],
         "playlistId": "PLrVVzxlvliV25VsB9ZYLoO66xwv4gdSO1"
     },
     {
@@ -109,7 +60,6 @@
         "description": "If you can't go to market, you can't be in market",
         "icon": "productmarketing.svg",
         "background": "linear-gradient(rgb(3, 122, 191), rgb(1, 81, 121))",
-        "videoIds": [],
         "playlistId": "PLrVVzxlvliV1mFYjIueE1VFgJndNNs5Gm"
     },
     {
@@ -117,10 +67,6 @@
         "description": "Whether it's SMBs or Enterprise, B2B is king",
         "icon": "b2b.svg",
         "background": "linear-gradient(rgb(3, 122, 191), rgb(1, 81, 121))",
-        "videoIds": [
-            "C7dNExgqd5A",
-            "laS_vGPWNIM"
-        ],
         "playlistId": "PLrVVzxlvliV2aiNJEVsi-hyIir5q6PGQP"
     },
     {
@@ -128,7 +74,6 @@
         "description": "Consumers rule the world (and marketing too)",
         "icon": "b2c.svg",
         "background": "linear-gradient(rgb(95, 155, 75), rgb(66, 103, 50))",
-        "videoIds": [],
         "playlistId": "PLrVVzxlvliV332WCjAUb1_cSkBQ_nW0jq"
     },
     {
@@ -136,13 +81,6 @@
         "description": "The best way to make a warm intro",
         "icon": "abm.svg",
         "background": "linear-gradient(rgb(255, 163, 17), rgb(226, 133, 0))",
-        "videoIds": [
-            "eZ_XQlln6iU",
-            "Co22pd-mVlk",
-            "13gkXQyQj-8",
-            "Sg_i1t2CWoA",
-            "PwySbKM98n4"
-        ],
         "playlistId": "PLrVVzxlvliV0YS463SjdrtSKLOu56k4cM"
     },
     {
@@ -150,11 +88,6 @@
         "description": "It's important for every business to be social ",
         "icon": "socialmedia.svg",
         "background": "linear-gradient(rgb(255, 199, 45), rgb(249, 174, 0))",
-        "videoIds": [
-            "3bnRnkLjZL4",
-            "fYilnGQ7Ub0",
-            "jp0v-vJu55c"
-        ],
         "playlistId": "PLrVVzxlvliV3x0WSNFsi96BLYztd_xSAJ"
     },
     {
@@ -162,7 +95,6 @@
         "description": "",
         "icon": "marketing-reschool.png",
         "background": "linear-gradient(rgb(147, 210, 46), rgb(122, 169, 36))",
-        "videoIds": [],
         "playlistId": ""
     },
     {
@@ -170,7 +102,6 @@
         "description": "",
         "icon": "copy.png",
         "background": "linear-gradient(rgb(224, 10, 42), rgb(160, 10, 29))",
-        "videoIds": [],
         "playlistId": ""
     }
 ]
