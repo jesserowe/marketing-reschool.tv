@@ -30,7 +30,7 @@ const ShareModal = ({ isOpen, onClose, title, author }) => {
           </button>
           <h1 className="text-2xl font-bold m-3">Share Video</h1>
           <p className="opacity-70 text-sm">
-            {title} - {author}
+            GTM Tube - {title} - {author}
           </p>
           <div className="flex justify-around text-sm m-5">
             <button

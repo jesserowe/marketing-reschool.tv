@@ -67,8 +67,8 @@ const PlayerControls = ({
           )}
           <div className="flex justify-between">
             <div>
-              <p className="font-bold p-1 h-8">{author}</p>
-              <p className="p-1 h-8">{title}</p>
+              <p className="font-bold p-1 h-8">GTM Tube - {title}</p>
+              <p className="p-1 h-8">{author}</p>
             </div>
             <button
               className="flex w-20 mx-5 justify-around items-center opacity-70 hover:opacity-100 focus:outline-none"
