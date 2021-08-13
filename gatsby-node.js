@@ -26,7 +26,7 @@ exports.createPages = async ({ actions: { createPage } }) => {
             return {
               id: snippet.resourceId.videoId,
               title: snippet.title,
-              author: snippet.channelTitle,
+              author: snippet.videoOwnerChannelTitle,
             }
           }),
         }

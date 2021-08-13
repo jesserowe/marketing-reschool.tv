@@ -46,7 +46,7 @@ const VideoTemplate = ({ pageContext }) => {
         <meta name="twitter:image" content={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} />
 
         {/* privy widget */}
-        <script type="text/javascript">{`var _d_site = _d_site || '04E7E23B6DE4DEC6E6B4AA43';`}</script>
+        <script type="text/javascript">{`var _d_site = _d_site || '973B352CD623473FAC62958D';`}</script>
         <script src="https://widget.privy.com/assets/widget.js"></script>
       </Helmet>
       <ShareModal
