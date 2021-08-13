@@ -62,6 +62,18 @@ const VideoTemplate = ({ pageContext }) => {
         </p>
       </div>
       <div className="hidden w-screen lg:flex">
+        {sidePannelShowing && (
+          <div className="flex-shrink-0 h-screen overflow-auto w-480 bg-near-black">
+            <div className="fixed z-10 flex items-center bg-near-black w-480">
+              <img className="w-11/12 m-auto my-5" src={logo} alt="logo" />
+            </div>
+            <ChannelSelector
+              channels={playlists}
+              active={playlist}
+              onChannelSelected={playlist => navigate(`/${playlist.id}/${sample(playlist.videos).id}`)}
+            />
+          </div>
+        )}
         <div id="video-player" className="relative flex-grow flex-shrink h-screen">
           <div className="absolute w-full h-24 bg-black">
             {isMuted && (
@@ -102,18 +114,6 @@ const VideoTemplate = ({ pageContext }) => {
             setShareModalOpen={setShareModalOpen}
           />
         </div>
-        {sidePannelShowing && (
-          <div className="flex-shrink-0 h-screen overflow-auto w-480 bg-near-black">
-            <div className="fixed z-10 flex items-center bg-near-black">
-              <img className="w-11/12 m-auto my-5" src={logo} alt="logo" />
-            </div>
-            <ChannelSelector
-              channels={playlists}
-              active={playlist}
-              onChannelSelected={playlist => navigate(`/${playlist.id}/${sample(playlist.videos).id}`)}
-            />
-          </div>
-        )}
       </div>
     </>
   )
